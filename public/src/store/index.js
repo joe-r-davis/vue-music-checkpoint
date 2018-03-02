@@ -1,11 +1,15 @@
 import vue from 'vue'
 import vuex from 'vuex'
 import $ from 'jquery'
+import axios from 'axios'
 
 vue.use(vuex)
 
 var store = new vuex.Store({
   state: {
+    user: {
+      name: "Joe"
+    },
     myTunes: [],
     results: []
   },
@@ -20,7 +24,9 @@ var store = new vuex.Store({
       var url2 = 'https://itunes.apple.com/search?term=' + artist;
       var apiUrl = url + encodeURIComponent(url2);
       $.get(apiUrl).then(data=>{
-        commit('setResults', data)
+        data = JSON.parse(data)
+        console.log('Look at results', data)
+        commit('setResults', data.results)
       })
     },
     getMyTunes({commit, dispatch}){

@@ -1,7 +1,19 @@
-import vue from 'vue'
-import vuex from 'vuex'
-import $ from 'jquery'
-import axios from 'axios'
+import vue from 'vue';
+import vuex from 'vuex';
+import $ from 'jquery';
+import axios from 'axios';
+
+var api = axios.create({
+  baseURL: "//localhost:3000/api/",
+  timeout: 5000
+  // withCredentials: true
+});
+
+// var auth = axios.create({
+//   baseURL: "//localhost:3000/auth/",
+//   timeout: 5000,
+//   withCredentials: true
+// });
 
 vue.use(vuex)
 
@@ -49,3 +61,4 @@ var store = new vuex.Store({
 })
 
 export default store
+

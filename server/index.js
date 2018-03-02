@@ -11,7 +11,7 @@ server.use(bp.json());
 server.use(bp.urlencoded({ extended: true }));
 
 //Your routes here
-
+var songsRoutes = require('./server-assets/routes/songs');
 
 server.use("*", (error, req, res, next) => {
     res.status(400).send(error);

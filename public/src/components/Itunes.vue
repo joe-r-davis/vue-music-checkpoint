@@ -14,7 +14,7 @@
                 <h5 class="info-text">{{song.trackName}}</h5>
                 <p class="info-text">Artist: {{song.artistName}}</p>
                 <p class="info-text">Album: {{song.collectionName}}</p>
-                <p>{{song.collectionPrice}}</p>
+                <p>{{song.trackPrice}}</p>
             </div>
             <audio controls class="audio audio-width">
                 <source :src="song.previewUrl" type="audio/ogg">

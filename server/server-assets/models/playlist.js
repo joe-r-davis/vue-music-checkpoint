@@ -1,9 +1,8 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-var ObjectId = mongoose.SchemaTypes.ObjectId;
-var SchemaName = "Song";
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId
 
-var schema = new Schema({
+var schema = new mongoose.Schema({
     artistName: { type: String, required: true },
     artworkUrl100: { type: String, required: true },
     collectionName: { type: String, required: true },
@@ -15,6 +14,4 @@ var schema = new Schema({
     trackPrice: { type: Number, required: true }
 })
 
-
-
-module.exports = mongoose.model('Song', schema)
+module.exports = mongoose.model('Playlist', schema)

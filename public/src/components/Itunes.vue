@@ -1,6 +1,6 @@
 <template>
     <div class="itunes">
-        <div class="col-sm-112 m-1rem pd-1rem centerFlex">
+        <div class="col m-1rem pd-1rem centerFlex">
             <form @submit.prevent="getMusicByArtist" class="form-inline">
                 <input type="text" class="form-control" placeholder="Artist Name" v-model="artist">
                 <button class="btn btn-primary" type="submit" id="get-music-button">Get Music</button>
@@ -60,6 +60,11 @@
         background-image: linear-gradient(-180deg, rgba(0, 179, 234, 0.6), rgba(188, 4, 216, 0.9));
     }
 
+    .search-center {
+        align-content: center;
+        width: 90%;
+    }
+
     .song-box {
         background-color: rgba(255, 255, 255, 0.3);
         border-color: rgba(255, 255, 255, 0.6);
@@ -84,7 +89,7 @@
     }
 
     .audio-width {
-        width: 90%;
+        width: 100%;
     }
 
     /* alignment helpers */

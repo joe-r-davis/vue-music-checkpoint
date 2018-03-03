@@ -10,7 +10,7 @@ var schema = new Schema({
     playlistId: { type: String },
     previewUrl: { type: String, required: true },
     rank: { type: Number, required: true, default: 0 },
-    trackId: {type: Number, required: true, unique: true },
+    trackId: {type: Number, required: true},
     trackName: { type: String, required: true },
     trackPrice: { type: Number, required: true }
 })

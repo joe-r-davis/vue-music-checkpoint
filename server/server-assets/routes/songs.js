@@ -31,16 +31,17 @@ router.get('/music/playlists', (req, res, next) => {
 
 
 //get playlsit by id
-router.get('/music/playlists/:pid', (req, res, next) => {
-    var list = {}
-    Playlists.find(req.params.pid)
-        .then(playlists =>{
-            list.playlist = playlist
-            Songs.find({playlistId: req.params.pid})
+router.get('/music/playlists/:pid/songs', (req, res, next) => {
+    var out = {}
+    Playlists.findById(req.params.pid)
+        .then(playlist => {
+            out.playlist = playlist
+            Songs.find({ playlistId: req.params.pid })
                 .then(songs => {
-                    list.songs = songs
-                    return res.send(list)
+                    out.songs = songs
+                    res.send(out)
                 })
+                .catch(next);
         })
         .catch(next);
 })
@@ -75,17 +76,18 @@ router.post('/music/playlists', (req,res, next) => {
 
 
 //add song to playlist
-router.post('/music/playlists/:pid/songs', (req,res, next) => {
+router.post('/music/playlists/:pid/songs', (req, res, next) => {
+    req.body.playlistId = req.params.pid
     Songs.create(req.body)
-    .then(song => {
-        var response = {
-            data: song,
-            message: 'Added song to playlist!'
-        }
-        return res.send(response)
+        .then(song => {
+            var response = {
+                data: song,
+                message: 'Successfully added song to playlist!'
+            }
+            res.send(response)
+        })
+        .catch(next);
     })
-    .catch(next);
-})
 
 
 //update song on playlist

@@ -31,28 +31,28 @@ router.get('/music/playlists', (req, res, next) => {
 
 
 //get playlsit by id
-router.get('/music/playlists/:pid/songs', (req, res, next) => {
-    var out = {}
+router.get('/music/playlists/:pid', (req, res, next) => {
+    var list = {}
     Playlists.find(req.params.pid)
         .then(playlists =>{
-            out.playlist = playlist
+            list.playlist = playlist
             Songs.find({playlistId: req.params.pid})
                 .then(songs => {
-                    out.songs = songs
-                    return res.send(out)
+                    list.songs = songs
+                    return res.send(list)
                 })
         })
         .catch(next);
 })
 
 
-//save song
+//add song
 router.post('/music/songs', (req,res, next) => {
     Songs.create(req.body)
     .then(song => {
         var response = {
             data: song,
-            message: 'Added song to playlist!'
+            message: 'saved song to database!'
         }
         return res.send(response)
     })

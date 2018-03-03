@@ -3,15 +3,25 @@ let express = require("express"),
   cors = require("cors"),
   server = express(),
   port = 3000;
+  var songsRoutes = require('./server-assets/routes/songs');
 
 require("./server-assets/db/mlab-config");
 
-server.use(cors());
+var whitelist = ['http://localhost:8080'];
+var corsOptions = {
+	origin: function (origin, callback) {
+		var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+		callback(null, originIsWhitelisted);
+	},
+	credentials: true
+};
+
+
+server.use(cors(corsOptions));
 server.use(bp.json());
 server.use(bp.urlencoded({ extended: true }));
-
+server.use(songsRoutes.router);
 //Your routes here
-var songsRoutes = require('./server-assets/routes/songs');
 
 server.use("*", (error, req, res, next) => {
     res.status(400).send(error);

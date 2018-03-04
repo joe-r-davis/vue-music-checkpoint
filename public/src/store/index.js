@@ -2,6 +2,7 @@ import vue from 'vue'
 import vuex from 'vuex'
 import $ from 'jquery'
 import axios from 'axios'
+import router from "../router"
 
 var api = axios.create({
   baseURL: "//localhost:3000/mytunes/",

@@ -7,9 +7,6 @@
             </form>
         </div>
         <div class="song col-sm-11 song-box m-1rem pd-1rem align-self-center" v-for="song in results">
-            <div class="row">
-                
-            </div>
             <div class="song-image  m-r-05rem">
                 <img class="rounded mx-auto d-block" :src="song.artworkUrl100" alt="Album Art">
             </div>
@@ -20,7 +17,7 @@
                 <p>{{song.trackPrice}}</p>
             </div>
             <div class="addButton">
-                <button class="btn btn-primary" @click="addToMyPlaylist(song)">Add to Playlist</button>
+                <button class="btn btn-primary" @click="addToMyTunes(song)">Add to Playlist</button>
             </div>
             <audio controls class="audio audio-width">
                 <source :src="song.previewUrl" type="audio/ogg">
@@ -28,12 +25,12 @@
             </audio>
         </div>
     </div>
-    </div>
+
 </template>
 
 <script>
     export default {
-        name: 'iTunes',
+        name: 'results',
         data() {
             return {
                 artist: ''
@@ -47,6 +44,7 @@
                 this.artist = ''
             },
             addToMyTunes(song) {
+                debugger
                 this.$store.dispatch('addToMyTunes', song)
             }
         },
@@ -54,9 +52,9 @@
             results() {
                 return this.$store.state.results
             },
-            myTunes() {
-                return this.store.state.myTunes
-            }
+            // myTunes() {
+            //     return this.$store.state.results
+            // }
         }
     }
 

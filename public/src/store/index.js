@@ -34,6 +34,9 @@ var store = new vuex.Store({
         return b.rank - a.rank;
       })
       state.myTunes = results
+    },
+    addMyTunes(state, results) {
+      state.myTunes.push(results)
     }
   },
   actions: {

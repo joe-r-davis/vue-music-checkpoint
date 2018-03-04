@@ -48,7 +48,7 @@ router.post('/music/songs', (req, res, next) => {
 // })
 
 //add song to playlist - Need to make one playlist work first to meet reqs
-router.post('/music/playlists', (req, res, next) => {
+router.post('/playlists', (req, res, next) => {
     Songs.create(req.body)
         .then(song => {
             var response = {

@@ -15,7 +15,7 @@ router.post('/mytunes/playlists', (req,res, next) => {
 })
 
 //get playlist - using one playlist for now to meet reqs
-router.get('/mytunes/playlist', (req, res, next) => {
+router.get('/mytunes/playlist/', (req, res, next) => {
     Playlist.find()
         .then(playlist =>{
             return res.send(playlist);

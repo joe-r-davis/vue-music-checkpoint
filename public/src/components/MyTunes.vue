@@ -1,7 +1,7 @@
 <template>
     <div class="my-tunes">
         <div class="row m-1rem pd-1rem centerFlex">
-            <button class="btn btn-primary" type="submit" id="get-my-tunes">Get MyTunes</button>
+            <button class="btn btn-primary" @click="getMyTunes(myTune)">Get MyTunes</button>
         </div>
         <div class="song col-sm-11 song-box m-1rem pd-1rem align-self-center" v-for="myTune in myTunes">
             <div class="song-image  m-r-05rem">
@@ -31,9 +31,14 @@
         name: 'My-Tunes',
         data() {
             return {
+                myTune: ''
             }
         },
         methods: {
+            getMyTunes(myTune) {
+                this.$store.dispatch('getMyTunes', this.myTune)
+                this.myTune = ''
+            },
             removeTrack(track) {
                 this.$store.dispatch('removeTrack', track)
             },

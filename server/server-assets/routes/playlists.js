@@ -34,17 +34,17 @@ router.get('/mytunes/playlists/:id', (req, res, next) => {
 })
 
 //delete playlist
-router.delete('/mytunes/songs/:id', (req,res, next) => {
-    Playlists.findByIdAndRemove(req.params.id)
-    .then(playlist => {
-        var response = {
-            data: playlist,
-            message: 'Deleted playlist!'
-        }
-        return res.send(response)
-    })
-    .catch(next);
-})
+// router.delete('/mytunes/songs/:id', (req,res, next) => {
+//     Playlists.findByIdAndRemove(req.params.id)
+//     .then(playlist => {
+//         var response = {
+//             data: playlist,
+//             message: 'Deleted playlist!'
+//         }
+//         return res.send(response)
+//     })
+//     .catch(next);
+// })
 
 
 

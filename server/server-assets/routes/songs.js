@@ -21,7 +21,7 @@ router.get('/mytunes/songs/:id', (req, res, next) => {
 })
 
 //add song to one playlist for now to meet reqs
-router.post("/mytunes/playlist", (req, res, next) => {
+router.post("/mytunes/songs", (req, res, next) => {
     Songs.create(req.body)
         .then(song => {
             return res.send(song);
@@ -84,11 +84,11 @@ router.put('/mytunes/playlist/songs/:id', (req, res, next) => {
         .catch(next);
 })
 
-//delete song
+//delete song from songs list
 router.delete('/mytunes/songs/:id', (req, res, next) => {
-    Songs.findByIdAndRemove(req.params.id, req.body)
+    Songs.findByIdAndRemove(req.params.id)
         .then(songs => {
-            return res.send(songs);
+            return res.send(songs, "Successfully deleted song from songs!");
         })
         .catch(next);
 })

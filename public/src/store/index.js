@@ -63,7 +63,7 @@ var store = new vuex.Store({
 
     //this will post to your server adding a new track to your tunes
     addToMyTunes({ commit, dispatch }, track) {
-      api.post('playlist', track) 
+      api.post('songs', track) 
         .then(result => {
           console.log(result)
           commit('addMyTunes', track)
@@ -95,7 +95,7 @@ var store = new vuex.Store({
       track.rank--
       api.put('playlist/songs/' + track._id, track)
         .then(result =>{
-          dipatch('getMyTunes')
+          dispatch('getMyTunes')
         })
         .catch(err => { console.log(err) })
     }

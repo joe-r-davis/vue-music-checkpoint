@@ -1,9 +1,8 @@
 var router = require("express").Router();
-var Playlists = require("../models/playlist")
-var Songs = require("../models/song");
+var Playlists = require("../models/playlist");
 
 //add playlist
-router.post('/music/playlists', (req,res, next) => {
+router.post('/mytunes/playlists', (req,res, next) => {
     Playlists.create(req.body)
     .then(playlist => {
         var response = {
@@ -15,17 +14,17 @@ router.post('/music/playlists', (req,res, next) => {
     .catch(next);
 })
 
-//get playlist
-router.get('/music/playlists', (req, res, next) => {
-    Playlists.find()
-        .then(playlists =>{
-            return res.send(playlists);
+//get playlist - using one playlist for now to meet reqs
+router.get('/mytunes/playlist', (req, res, next) => {
+    Playlist.find()
+        .then(playlist =>{
+            return res.send(playlist);
         })
         .catch(next);
 })
 
 //get playlist by id
-router.get('/music/playlists/:id', (req, res, next) => {
+router.get('/mytunes/playlists/:id', (req, res, next) => {
     var out = {}
     Playlists.findById(req.params.pid)
         .then(playlist => {
@@ -35,7 +34,7 @@ router.get('/music/playlists/:id', (req, res, next) => {
 })
 
 //delete playlist
-router.delete('/music/songs/:id', (req,res, next) => {
+router.delete('/mytunes/songs/:id', (req,res, next) => {
     Playlists.findByIdAndRemove(req.params.id)
     .then(playlist => {
         var response = {

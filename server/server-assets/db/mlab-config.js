@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var connectionString = "mongodb://test:test@ds012538.mlab.com:12538/vue-music-checkpoint";
+var connectionString = "mongodb://test:test@ds058369.mlab.com:58369/mytunes";
 
 var connection = mongoose.connection;
 mongoose.connect(connectionString);

@@ -1,9 +1,9 @@
 var router = require("express").Router();
 var Songs = require("../models/song");
-var Playlists = require("../models/playlist")
+
 
 //get all songs
-router.get('/music/songs', (req, res, next) => {
+router.get('/mytunes/songs', (req, res, next) => {
     Songs.find(req.query) //{} empty returns everything
         .then(songs => {
             return res.send(songs);
@@ -12,7 +12,7 @@ router.get('/music/songs', (req, res, next) => {
 })
 
 //get songs by id
-router.get('/music/songs/:sid', (req, res, next) => {
+router.get('/mytunes/songs/:sid', (req, res, next) => {
     Songs.findById(req.params.sid)
         .then(songs => {
             return res.send(songs);
@@ -20,21 +20,18 @@ router.get('/music/songs/:sid', (req, res, next) => {
         .catch(next);
 })
 
-//add song
-router.post('/music/songs', (req, res, next) => {
+//add song to one playlist for now to meet reqs
+router.post("/mytunes/playlist", (req, res, next) => {
     Songs.create(req.body)
         .then(song => {
-            var response = {
-                data: song,
-                message: 'saved song to database!'
-            }
-            return res.send(response)
+            return res.send(song);
         })
         .catch(next);
-})
+});
+
 
 //add song to playlist with playlist id (might have to be a stretch goal)
-// router.post('/music/playlists/:pid/songs', (req, res, next) => {
+// router.post('/mytunes/playlists/:pid/songs', (req, res, next) => {
 //     req.body.playlistId = req.params.pid
 //     Songs.create(req.body)
 //         .then(song => {
@@ -48,34 +45,34 @@ router.post('/music/songs', (req, res, next) => {
 // })
 
 //add song to playlist - Need to make one playlist work first to meet reqs
-router.post('/playlists', (req, res, next) => {
-    Songs.create(req.body)
-        .then(song => {
-            var response = {
-                data: song,
-                message: 'Successfully added song to playlist!'
-            }
-            res.send(response)
-        })
-        .catch(next);
-})
+// router.post('/playlists', (req, res, next) => {
+//     Songs.create(req.body)
+//         .then(song => {
+//             var response = {
+//                 data: song,
+//                 message: 'Successfully added song to playlist!'
+//             }
+//             res.send(response)
+//         })
+//         .catch(next);
+// })
 
 //update song on playlist
-router.put('/music/playlists/:id/songs/:id', (req, res, next) => {
-    Songs.findByIdAndUpdate(req.params.id, req.body)
-        .then(song => {
-            var response = {
-                data: song,
-                message: 'Updated song on playlist!'
-            }
-            return res.send(response)
-        })
-        .catch(next);
-})
+// router.put('/mytunes/playlists/:id/songs/:id', (req, res, next) => {
+//     Songs.findByIdAndUpdate(req.params.id, req.body)
+//         .then(song => {
+//             var response = {
+//                 data: song,
+//                 message: 'Updated song on playlist!'
+//             }
+//             return res.send(response)
+//         })
+//         .catch(next);
+// })
 
 
-//update song- this for up and down votes
-router.put('/music/songs/:id', (req, res, next) => {
+//update song- this for up and down votes, using one playlist for now to meet reqs
+router.put('/mytunes/playlist/songs/:id', (req, res, next) => {
     Songs.findByIdAndUpdate(req.params.id, req.body)
         .then(song => {
             var response = {
@@ -89,9 +86,9 @@ router.put('/music/songs/:id', (req, res, next) => {
 
 
 //delete song
-router.delete('/music/songs/:id', (req, res, next) => {
+router.delete('/mytunes/playlist/songs/:id', (req, res, next) => {
     Songs.findByIdAndRemove(req.params.id)
-        .then(song => {
+        .then(playlist => {
             var response = {
                 data: song,
                 message: 'Deleted song from playlist!'

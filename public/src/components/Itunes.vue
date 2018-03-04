@@ -6,7 +6,7 @@
                 <button class="btn btn-primary" type="submit" id="get-music-button">Get Music</button>
             </form>
         </div>
-        <div class="song col-sm-11 song-box m-1rem pd-1rem align-self-center" v-for="song in results">
+        <div class="song col-sm-11 song-box m-1rem pd-1rem align-self-center" v-for="song in Itunes">
             <div class="song-image  m-r-05rem">
                 <img class="rounded mx-auto d-block" :src="song.artworkUrl100" alt="Album Art">
             </div>
@@ -30,7 +30,7 @@
 
 <script>
     export default {
-        name: 'results',
+        name: 'iTunes',
         data() {
             return {
                 artist: ''
@@ -44,12 +44,11 @@
                 this.artist = ''
             },
             addToMyTunes(song) {
-                debugger
                 this.$store.dispatch('addToMyTunes', song)
             }
         },
         computed: {
-            results() {
+            Itunes() {
                 return this.$store.state.results
             },
             // myTunes() {

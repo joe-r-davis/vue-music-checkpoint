@@ -28,12 +28,17 @@
     components: {
       Itunes,
       MyTunes
+    },
+    methods: {
+      getMyTunes() {
+        this.$store.dispatch('getMyTunes')
+      }
     }
   }
 </script>
 
 
-<style>
+<style scoped>
   .children {
     padding-right: 0px;
   }

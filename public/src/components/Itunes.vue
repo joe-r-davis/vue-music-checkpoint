@@ -1,12 +1,15 @@
 <template>
     <div class="itunes">
-        <div class="col m-1rem pd-1rem centerFlex">
+        <div class="row m-1rem pd-1rem centerFlex">
             <form @submit.prevent="getMusicByArtist" class="form-inline">
                 <input type="text" class="form-control" placeholder="Artist Name" v-model="artist">
                 <button class="btn btn-primary" type="submit" id="get-music-button">Get Music</button>
             </form>
         </div>
         <div class="song col-sm-11 song-box m-1rem pd-1rem align-self-center" v-for="song in results">
+            <div class="row">
+                
+            </div>
             <div class="song-image  m-r-05rem">
                 <img class="rounded mx-auto d-block" :src="song.artworkUrl100" alt="Album Art">
             </div>
@@ -15,6 +18,9 @@
                 <p class="info-text">Artist: {{song.artistName}}</p>
                 <p class="info-text">Album: {{song.collectionName}}</p>
                 <p>{{song.trackPrice}}</p>
+            </div>
+            <div class="addButton">
+                <button class="btn btn-primary" @click="addToMyPlaylist(song)">Add to Playlist</button>
             </div>
             <audio controls class="audio audio-width">
                 <source :src="song.previewUrl" type="audio/ogg">
@@ -47,6 +53,9 @@
         computed: {
             results() {
                 return this.$store.state.results
+            },
+            myTunes() {
+                return this.store.state.myTunes
             }
         }
     }
@@ -90,6 +99,10 @@
 
     .audio-width {
         width: 100%;
+    }
+
+    .addButton {
+        padding-bottom: .25rem;
     }
 
     /* alignment helpers */
@@ -197,6 +210,7 @@
     .m-l-1rem {
         margin-left: 1rem;
     }
+
     .m-r-05rem {
         margin-right: .5rem;
     }

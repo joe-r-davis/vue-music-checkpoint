@@ -15,16 +15,12 @@
             </div>
             <div class="buttons">
                 <button class="btn btn-primary" @click="promoteTrack(myTune)">Move Up</button>
-            </div>
-            <div class="buttons">
                 <button class="btn btn-primary" @click="demoteTrack(myTune)">Move Down</button>
-            </div>
-            <div class="buttons">
-                <button class="btn btn-danger" @click="removeFromMyTunes(track)">Delete Song</button>
+                <button class="btn btn-danger" @click="removeTrack(myTune)">Delete Song</button>
             </div>
             <audio controls class="audio audio-width">
-                <source :src="song.previewUrl" type="audio/ogg">
-                <source :src="song.previewUrl" type="audio/mpeg">
+                <source :src="myTune.previewUrl" type="audio/ogg">
+                <source :src="myTune.previewUrl" type="audio/mpeg">
             </audio>
         </div>
     </div>
@@ -38,14 +34,14 @@
             }
         },
         methods: {
-            removeFromMyTunes(track) {
-                this.$store.dispatch('removeFromMyTunes', track)
+            removeTrack(track) {
+                this.$store.dispatch('removeTrack', track)
             },
             promoteTrack(myTune) {
-                this.$store.dispatch('upVote', myTune)
+                this.$store.dispatch('promoteTrack', myTune)
             },
             demoteTrack(myTune) {
-                this.$store.dispatch('downVote', myTune)
+                this.$store.dispatch('demoteTrack', myTune)
             }
         },
         computed: {

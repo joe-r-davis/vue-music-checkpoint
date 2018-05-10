@@ -5,7 +5,7 @@ import axios from 'axios'
 import router from "../router"
 
 var production = !window.location.host.includes('localhost')
-var baseURL = production ? '//itunes-playlist.herokuapp.com/' : '//localhost:3000/mytunes/'
+var baseURL = production ? '//itunes-playlist.herokuapp.com/mytunes/' : '//localhost:3000/mytunes/'
 
 var api = axios.create({
   baseURL: baseURL,

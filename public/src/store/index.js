@@ -66,7 +66,7 @@ var store = new vuex.Store({
       api.post('songs', track) 
         .then(result => {
           console.log(result)
-          commit('addMyTunes', track)
+          commit('addMyTunes', result.data)
         })
         .catch(err => { console.log(err) })
     },

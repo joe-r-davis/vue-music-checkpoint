@@ -86,11 +86,15 @@ router.put('/mytunes/playlist/songs/:id', (req, res, next) => {
 
 //delete song from songs list
 router.delete('/mytunes/songs/:id', (req, res, next) => {
+    console.log("delete")
     Songs.findByIdAndRemove(req.params.id)
         .then(songs => {
-            return res.send(songs, "Successfully deleted song from songs!");
+            return res.status(200).send("Successfully deleted song from songs!");
         })
-        .catch(next);
+        .catch(err=>{
+            console.log(err)
+            next(err)
+        });
 })
 
 

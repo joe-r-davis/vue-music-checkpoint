@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <div class="row container-fluid bg-image-centered">
-      <div class="col-sm-12 centerFlex m-1rem centered-text ">
+    <div class="row container-fluid bg-image-centered header">
+      <div class="col-sm-12 centerFlex m-1rem center-flex">
         <h1 class="display-3 top-callout-text pd-1rem"> Find your music </h1>
       </div>
     </div>
@@ -39,6 +39,10 @@
 
 
 <style scoped>
+  .header {
+    height: 20vh;
+  }
+
   .children {
     padding-right: 0px;
   }
@@ -52,6 +56,13 @@
   .top-callout-text {
     color: rgba(255, 255, 255, 0.9);
     text-align: center;
+
+  }
+
+  .centerFlex {
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
 
   .centered-text {
@@ -64,13 +75,13 @@
 
   .my-tunes {
     display: inline-block;
-    min-height: 500px;
+    min-height: 80vh;
     background-image: linear-gradient(-180deg, rgba(0, 179, 234, 0.6), rgba(188, 4, 216, 0.9));
   }
 
   .itunes {
     display: inline-block;
     background-image: linear-gradient(-180deg, rgba(0, 179, 234, 0.6), rgba(188, 4, 216, 0.9));
-    min-height: 500px;
+    min-height: 80vh;
   }
 </style>

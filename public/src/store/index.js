@@ -9,7 +9,7 @@ var baseURL = production ? '//itunes-playlist.herokuapp.com/' : '//localhost:300
 
 var api = axios.create({
   baseURL: baseURL,
-  timeout: 5000,
+  timeout: 5000
 
 });
 
